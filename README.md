@@ -31,7 +31,7 @@ For this you need to have the [AWS CLI](https://aws.amazon.com/de/cli/) installe
 If the CLI is setup you can simply run:
 
 ```sh
-yarn compile
+yarn build
 yarn zip
 yarn deploy
 ```

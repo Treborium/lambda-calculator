@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "compile": "tsc",
-    "zip": "cd compiled && zip -q -r lambda.zip index.js index.js.map",
+    "build": "tsc -p tsconfig-build.json",
+    "zip": "cd compiled && zip -q -r lambda.zip *.js*",
     "deploy": "aws lambda update-function-code --function-name basic-calculator --zip-file fileb://compiled/lambda.zip"
   },
   "devDependencies": {
