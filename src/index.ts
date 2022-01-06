@@ -2,6 +2,7 @@ import {
   APIGatewayProxyEventV2,
   APIGatewayProxyStructuredResultV2,
 } from "aws-lambda";
+import { stringify } from "querystring";
 import { ErrorMessages } from "./error";
 
 export const handler = async (
@@ -34,10 +35,21 @@ export const calculus = async (
     });
   }
 
-  return {
-    statusCode: 200,
-    body: "hello from lambda!",
-  };
+  const input = event.queryStringParameters["input"];
+  const decoded = decodeFromBase64(input);
+
+  if (!isArithmeticExpression(decoded)) {
+    console.log("input is not arithmetic expression:", decoded);
+    return buildResponse(400, {
+      error: true,
+      message: ErrorMessages.UnsupportedSymbols,
+    });
+  }
+
+  const result = eval(decoded);
+  console.log("input:", decoded, "result:", result);
+
+  return buildResponse(200, { error: false, result})
 };
 
 const buildResponse = (
@@ -48,6 +60,15 @@ const buildResponse = (
     statusCode,
     body: JSON.stringify(body),
   };
+};
+
+const decodeFromBase64 = (input: string): string =>
+  Buffer.from(input, "base64").toString("utf-8");
+
+const isArithmeticExpression = (expression: string): boolean => {
+  // TODO: add exhaustive unit tests
+  const invalidCharactersRegex = /[^\d\+\-\*/\(\)\s]/gm
+  return expression.match(invalidCharactersRegex) === null;
 };
 
 interface LambdaResponseBody {
