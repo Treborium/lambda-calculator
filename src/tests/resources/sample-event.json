@@ -1,0 +1,47 @@
+{
+  "version": "2.0",
+  "routeKey": "ANY /calculus",
+  "rawPath": "/calculus",
+  "rawQueryString": "input=abc",
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "en-US,en;q=0.5",
+    "content-length": "0",
+    "dnt": "1",
+    "host": "1venjqkejd.execute-api.eu-central-1.amazonaws.com",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "none",
+    "sec-fetch-user": "?1",
+    "sec-gpc": "1",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0",
+    "x-amzn-trace-id": "Root=1-61d6ee8c-04ffcedc730d8b3d4e8852ed",
+    "x-forwarded-for": "46.223.163.160",
+    "x-forwarded-port": "443",
+    "x-forwarded-proto": "https"
+  },
+  "queryStringParameters": {
+    "input": "abc"
+  },
+  "requestContext": {
+    "accountId": "173281565785",
+    "apiId": "1venjqkejd",
+    "domainName": "1venjqkejd.execute-api.eu-central-1.amazonaws.com",
+    "domainPrefix": "1venjqkejd",
+    "http": {
+      "method": "GET",
+      "path": "/calculus",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "46.223.163.160",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0"
+    },
+    "requestId": "Lho2Cjc5liAEPWQ=",
+    "routeKey": "ANY /calculus",
+    "stage": "$default",
+    "time": "06/Jan/2022:13:28:44 +0000",
+    "timeEpoch": 1641475724879
+  },
+  "isBase64Encoded": false
+}
