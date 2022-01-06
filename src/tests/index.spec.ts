@@ -10,6 +10,41 @@ describe("Calculus API", () => {
 
     const response = await calculus(event);
     expect(response.statusCode).toBe(405);
-    expect(response.body).toEqual(JSON.stringify({ error: true, message: ErrorMessages.UnsupportedHttpMethod}));
+    expect(response.body).toEqual(
+      JSON.stringify({
+        error: true,
+        message: ErrorMessages.UnsupportedHttpMethod,
+      })
+    );
+  });
+
+  it("returns 400 if required query parameter is missing", async () => {
+    const event = buildCustomEvent({
+      queryStringParameters: { testKey: "testValue" },
+    });
+
+    const response = await calculus(event);
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toEqual(
+      JSON.stringify({
+        error: true,
+        message: ErrorMessages.MissingRequiredQueryParameter,
+      })
+    );
+  });
+
+  it("returns 400 if no query parameter is present", async () => {
+    const event = buildCustomEvent({
+      queryStringParameters: undefined,
+    });
+
+    const response = await calculus(event);
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toEqual(
+      JSON.stringify({
+        error: true,
+        message: ErrorMessages.MissingRequiredQueryParameter,
+      })
+    );
   });
 });

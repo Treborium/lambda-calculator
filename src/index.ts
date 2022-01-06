@@ -22,6 +22,18 @@ export const calculus = async (
     });
   }
 
+  if (!event.queryStringParameters || !event.queryStringParameters["input"]) {
+    console.log(
+      "missing required query parameters. Provided parameters:",
+      JSON.stringify(event.queryStringParameters)
+    );
+
+    return buildResponse(400, {
+      error: true,
+      message: ErrorMessages.MissingRequiredQueryParameter,
+    });
+  }
+
   return {
     statusCode: 200,
     body: "hello from lambda!",
