@@ -47,4 +47,13 @@ describe("Calculus API", () => {
       })
     );
   });
+
+  it('returns 200 if required query parameter is present', async () => {
+    const event = buildCustomEvent({
+      queryStringParameters: { input: "abc" },
+    });
+
+    const response = await calculus(event);
+    expect(response.statusCode).toBe(200);
+  });
 });
