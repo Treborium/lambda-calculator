@@ -2,6 +2,7 @@ import {
   APIGatewayProxyEventV2 as ApiGatewayEvent,
   APIGatewayProxyStructuredResultV2 as ApiGatewayResponse,
 } from "aws-lambda";
+import { isArithmeticExpression, isHttpMethodUnsupported } from "./assert";
 import {
   unsupportedHttpMethodError,
   missingRequiredQueryParameterError,
@@ -18,11 +19,11 @@ export const handler = async (
 export const calculus = async (
   event: ApiGatewayEvent
 ): Promise<ApiGatewayResponse> => {
-  if (event.requestContext.http.method !== "GET") {
+  if (isHttpMethodUnsupported(event)) {
     return unsupportedHttpMethodError(event);
   }
 
-  if (!event.queryStringParameters || !event.queryStringParameters["input"]) {
+  if (!event.queryStringParameters?.["input"]) {
     return missingRequiredQueryParameterError(event);
   }
 
@@ -58,10 +59,5 @@ interface LambdaResponseBody {
 const decodeFromBase64 = (input: string): string =>
   Buffer.from(input, "base64").toString("utf-8");
 
-const isArithmeticExpression = (expression: string): boolean => {
-  // TODO: add exhaustive unit tests
-  const invalidCharactersRegex = /[^\d\+\-\*/\(\)\s]/gm;
-  return expression.match(invalidCharactersRegex) === null;
-};
 
 
