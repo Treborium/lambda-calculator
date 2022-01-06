@@ -2,7 +2,11 @@ import {
   APIGatewayProxyEventV2 as ApiGatewayEvent,
   APIGatewayProxyStructuredResultV2 as ApiGatewayResponse,
 } from "aws-lambda";
-import { ErrorMessages } from "./error";
+import {
+  unsupportedHttpMethodError,
+  missingRequiredQueryParameterError,
+  unsupportedSymbolsError,
+} from "./error";
 
 export const handler = async (
   event: ApiGatewayEvent
@@ -35,7 +39,7 @@ export const calculus = async (
   return buildResponse(200, { error: false, result });
 };
 
-const buildResponse = (
+export const buildResponse = (
   statusCode: number,
   body: LambdaResponseBody
 ): ApiGatewayResponse => {
@@ -44,6 +48,12 @@ const buildResponse = (
     body: JSON.stringify(body),
   };
 };
+
+interface LambdaResponseBody {
+  error: boolean;
+  message?: string;
+  result?: number;
+}
 
 const decodeFromBase64 = (input: string): string =>
   Buffer.from(input, "base64").toString("utf-8");
@@ -54,42 +64,4 @@ const isArithmeticExpression = (expression: string): boolean => {
   return expression.match(invalidCharactersRegex) === null;
 };
 
-const unsupportedHttpMethodError = (
-  event: ApiGatewayEvent
-): ApiGatewayResponse => {
-  console.log("unsupported http method:", event.requestContext.http.method);
-  return buildResponse(405, {
-    error: true,
-    message: ErrorMessages.UnsupportedHttpMethod,
-  });
-};
 
-const missingRequiredQueryParameterError = (
-  event: ApiGatewayEvent
-): ApiGatewayResponse => {
-  console.log(
-    "missing required query parameters. Provided parameters:",
-    JSON.stringify(event.queryStringParameters)
-  );
-
-  return buildResponse(400, {
-    error: true,
-    message: ErrorMessages.MissingRequiredQueryParameter,
-  });
-};
-
-const unsupportedSymbolsError = (
-  input: string
-): ApiGatewayResponse => {
-  console.log("input is not arithmetic expression:", input);
-  return buildResponse(400, {
-    error: true,
-    message: ErrorMessages.UnsupportedSymbols,
-  });
-};
-
-interface LambdaResponseBody {
-  error: boolean;
-  message?: string;
-  result?: number;
-}
