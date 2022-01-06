@@ -14,6 +14,14 @@ export const handler = async (
 export const calculus = async (
   event: APIGatewayProxyEventV2
 ): Promise<APIGatewayProxyStructuredResultV2> => {
+  if (event.requestContext.http.method !== "GET") {
+    console.log("unsupported http method:", event.requestContext.http.method);
+    return buildResponse(405, {
+      error: true,
+      message: ErrorMessages.UnsupportedHttpMethod,
+    });
+  }
+
   return {
     statusCode: 200,
     body: "hello from lambda!",
