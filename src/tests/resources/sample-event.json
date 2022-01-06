@@ -23,7 +23,7 @@
     "x-forwarded-proto": "https"
   },
   "queryStringParameters": {
-    "input": "abc"
+    "exampleKey": "exampleValue"
   },
   "requestContext": {
     "accountId": "173281565785",
