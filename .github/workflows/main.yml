@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -32,5 +32,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
-    - run: yarn test
+    - name: Run unit tests
+      run: yarn test
+    - name: Build and create archive
+      run: yarn build && yarn zip
+    - name: AWS Lambda Deploy
+      # You may pin to the exact commit or the version.
+      # uses: appleboy/lambda-action@7ef3dc1495565506e257e9950b6168191c5213c0
+      uses: appleboy/lambda-action@v0.1.5
+      with:
+        aws_region: ${{ secrets.AWS_REGION }}
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        function_name: basic-calculator
+        zip_file: compiled/lambda.zip
+    
           
