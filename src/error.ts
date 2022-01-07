@@ -7,7 +7,7 @@ import { buildResponse } from "./index";
 export enum ErrorMessages {
   UnsupportedHttpMethod = "method not allowed. Supported methods are: 'GET'.",
   MissingRequiredQueryParameter = "required query parameter is missing. Required parameters are: 'input'.",
-  UnsupportedSymbols = "unsupported symbols used for input expression. Supported symbols are: '+', '-', '*', '/', '(', ')', ' ' and any digits from 0 to 9.",
+  UnsupportedSymbols = "unsupported symbols used for input expression. Supported symbols are: '+', '-', '*', '/', '(', ')', ' ', '.' and any digits from 0 to 9.",
 }
 
 export const unsupportedHttpMethodError = (
