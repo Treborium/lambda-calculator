@@ -110,8 +110,14 @@ For this you need to have the [AWS CLI](https://aws.amazon.com/de/cli/) installe
 If the CLI is setup you can simply run:
 
 ```sh
-yarn build && yarn zip && yarn deploy
+yarn deploy
 ```
+
+This will execute the following steps:
+
+1. build the project into the `compiled/` folder via `yarn build`
+2. zip the compiled JavaScript files into `compiled/lambda.zip` via `yarn zip`
+3. upload the archive via `yarn upload`
 
 ## Future Considerations
 

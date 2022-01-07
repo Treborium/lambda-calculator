@@ -11,7 +11,8 @@
     "compile": "tsc",
     "build": "tsc -p tsconfig-build.json",
     "zip": "cd compiled && zip -q -r lambda.zip *.js*",
-    "deploy": "aws lambda update-function-code --function-name basic-calculator --zip-file fileb://compiled/lambda.zip"
+    "upload": "aws lambda update-function-code --function-name basic-calculator --zip-file fileb://compiled/lambda.zip",
+    "deploy": "yarn build && yarn zip && yarn upload"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.89",
