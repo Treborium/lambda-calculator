@@ -45,7 +45,7 @@ describe("Asserts", () => {
       "7 / 8",
       "(9 * (0 - 10)) / 3 - 5",
       "3.5 * 2.1",
-      "1 + 2",  // unicode spaces
+      "1 + 2", // unicode spaces
       "1 + -5",
       "0123456789+-*/(). ",
     ];
@@ -56,15 +56,10 @@ describe("Asserts", () => {
   });
 
   it("return false if expression contains invalid symbols", () => {
-    const expressions = [
-      "x + 5",
-      "2 % 3",
-      "3,5 * 2,1"
-    ];
+    const expressions = ["x + 5", "2 % 3", "3,5 * 2,1"];
 
     for (const expression of expressions) {
       expect(isArithmeticExpression(expression)).toBe(false);
     }
-
   });
 });

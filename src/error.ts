@@ -34,9 +34,7 @@ export const missingRequiredQueryParameterError = (
   });
 };
 
-export const unsupportedSymbolsError = (
-  input: string
-): ApiGatewayResponse => {
+export const unsupportedSymbolsError = (input: string): ApiGatewayResponse => {
   console.log("input is not arithmetic expression:", input);
   return buildResponse(400, {
     error: true,

@@ -53,7 +53,7 @@ describe("Integration Tests of calculus/", () => {
     expect(isResponseReceived).toBe(true);
   });
 
-  it('returns status code 400 for input with unallowed symbols', async () => {
+  it("returns status code 400 for input with unallowed symbols", async () => {
     let isResponseReceived = false;
 
     await axios
@@ -72,7 +72,7 @@ describe("Integration Tests of calculus/", () => {
     expect(isResponseReceived).toBe(true);
   });
 
-  it('returns status code 400 for input that is not base64', async () => {
+  it("returns status code 400 for input that is not base64", async () => {
     let isResponseReceived = false;
 
     await axios
