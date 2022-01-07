@@ -1,5 +1,5 @@
-import { calculus } from "../index";
-import { ErrorMessages } from "../error";
+import { calculus } from "../../index";
+import { ErrorMessages } from "../../error";
 import { buildCustomEvent, encodeToBase64 } from "./utils";
 
 describe("Calculus API", () => {

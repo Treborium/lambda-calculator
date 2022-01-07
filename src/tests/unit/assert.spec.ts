@@ -1,4 +1,4 @@
-import { isArithmeticExpression, isHttpMethodUnsupported } from "../assert";
+import { isArithmeticExpression, isHttpMethodUnsupported } from "../../assert";
 import { buildCustomEvent } from "./utils";
 
 describe("Asserts", () => {
@@ -8,6 +8,8 @@ describe("Asserts", () => {
       "DELETE",
       "PUT",
       "HEAD",
+      "OPTION",
+      "PATCH",
       "RANDOM_STRING",
     ];
 
