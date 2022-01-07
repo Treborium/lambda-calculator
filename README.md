@@ -104,6 +104,12 @@ yarn install
 yarn test
 ```
 
+### Run Integration Tests
+
+```sh
+yarn test:integration
+```
+
 ### Deploy
 
 The code will automatically be deployed when pushed/merged to master branch.
