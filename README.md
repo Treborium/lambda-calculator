@@ -113,7 +113,9 @@ yarn test
 yarn test:integration
 ```
 
-### Deploy
+Integrations tests are being executed automatically once a day via GitHub Actions as well as on every push or merge to master.
+
+### Deployment
 
 The code will automatically be deployed when pushed/merged to master branch.
 Alternatively you may also deploy your changes from the terminal.
