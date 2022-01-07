@@ -19,6 +19,8 @@ base url: `https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/`
 
 - Description
 
+  Solves an arithmetic expression. The expression needs to be base64 encoded and may only contain supported characters.
+
 - URL
 
   `calculus/`
@@ -105,7 +107,7 @@ yarn test
 ### Deploy
 
 The code will automatically be deployed when pushed/merged to master branch.
-Alternatively you also deploy your changes from the terminal.
+Alternatively you may also deploy your changes from the terminal.
 For this you need to have the [AWS CLI](https://aws.amazon.com/de/cli/) installed and setup.
 If the CLI is setup you can simply run:
 
