@@ -6,8 +6,10 @@ A web application that can perform basic calculus.
 
 ```sh
 curl --request GET \
-  --url 'https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/calculus?input=KDErMykgKiA1IC8gMg%3D%3D'
+  --url 'https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/calculus?input=KDErMykgKiA1IC8gMi41'
 ```
+
+`input` is the arithmetic expression you want to solve. It has to be base64 encoded and may only contain `+`, `-`, `*`, `/`, `(`, `)`, `.`, spaces and numbers. The example expression decodes to `(1+3) * 5 / 2.5`. The result is therefore `8`.
 
 ## API Specification
 
@@ -46,12 +48,12 @@ base url: `https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/`
 - Error Responses
   - **Cause**: unallowed http method
   - **Status Code**: `405`
-  - **Content**: 
+  - **Content**:
 
     ```json
     {
       "error": true,
-      "message": "method not allowed. Supported methods are: 'GET'"
+      "message": "method not allowed. Supported methods are: 'GET'."
     }
     ```
 
@@ -64,7 +66,7 @@ base url: `https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/`
     ```json
     {
       "error": true,
-      "message": "required query parameter is missing. Required parameters are: 'input'"
+      "message": "required query parameter is missing. Required parameters are: 'input'."
     }
     ```
 
@@ -77,7 +79,7 @@ base url: `https://1venjqkejd.execute-api.eu-central-1.amazonaws.com/default/`
     ```json
     {
       "error": true,
-      "message": "unsupported symbols used for input expression. Supported symbols are: '+', '-', '*', '/', '(', ')', ' '"
+      "message": "unsupported symbols used for input expression. Supported symbols are: '+', '-', '*', '/', '(', ')', ' ', '.' and any digits from 0 to 9."
     }
     ```
 
@@ -110,3 +112,7 @@ If the CLI is setup you can simply run:
 ```sh
 yarn build && yarn zip && yarn deploy
 ```
+
+## Future Considerations
+
+- Generate API documentation automatically (e.g. with [Swagger](https://swagger.io/solutions/api-documentation/))
