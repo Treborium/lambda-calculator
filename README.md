@@ -5,6 +5,8 @@ A web application that can perform basic calculus.
 [![CD](https://github.com/Treborium/lambda-calculator/actions/workflows/cd.yml/badge.svg)](https://github.com/Treborium/lambda-calculator/actions/workflows/cd.yml)
 [![CI](https://github.com/Treborium/lambda-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/Treborium/lambda-calculator/actions/workflows/ci.yml)
 
+![architecture](images/architecture.svg)
+
 ## How To use
 
 ```sh
